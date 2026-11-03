@@ -12,12 +12,7 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.TreeMap;
 
-/**
- * Receiver for all three protocols. The SYN tells it which protocol is in use:
- *  - SW / GBN: accept only the next in-order segment, discard everything else, send cumulative ACK
- *  - SR      : buffer out-of-order segments inside the window, send cumulative ACK + SACK bitmap
- * After the last segment it lingers so that a lost final ACK can be re-sent, then verifies SHA-256.
- */
+
 public final class ArqReceiver {
     private final DatagramSocket sock;
     private final Path out;
@@ -116,7 +111,7 @@ public final class ArqReceiver {
         return bits;
     }
 
-    /** Returned for a dropped corrupt datagram: type 0 matches no branch, so it is simply ignored. */
+    
     private static final Packet NOISE = new Packet((byte) 0, 0, 0, 0, null);
 
     private SocketAddress lastPeer;

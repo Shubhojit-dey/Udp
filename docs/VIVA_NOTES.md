@@ -25,5 +25,7 @@
 - Why does jitter not reorder, and how is reordering produced instead?
 
 **Harness / integrity (`run_experiments.py`, `Sha256Util`, SYN hash)**
-- Why vary one parameter at a time? Why are seeds shared across protocols within a repeat?
+- Why vary one parameter at a time? Why are seeds shared across protocols within a repeat??
 - What does "goodput" measure here, and when does the clock start/stop?
+
+

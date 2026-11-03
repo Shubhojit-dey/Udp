@@ -3,11 +3,6 @@ package rdt;
 import java.net.DatagramSocket;
 import java.net.SocketAddress;
 
-/**
- * Sliding window with a per-segment retransmission deadline. The receiver returns a cumulative
- * ACK plus a 64-bit SACK bitmap; only segments that are still missing are ever retransmitted.
- * Deadlines are scanned inside the single event loop (window <= 64, so O(W) per wake-up).
- */
 public final class SelectiveRepeatSender extends ArqSender {
     public SelectiveRepeatSender(DatagramSocket s, SocketAddress peer, byte[] data, byte[] sha,
                                  int segSize, int window, RtoEstimator rto) {
@@ -62,6 +57,6 @@ public final class SelectiveRepeatSender extends ArqSender {
     private void mark(int s, boolean[] acked, boolean[] retx, long[] sentAt, long now) {
         if (acked[s]) return;
         acked[s] = true;
-        if (!retx[s]) rto.sample((now - sentAt[s]) / 1e6); // Karn: skip retransmitted segments
+        if (!retx[s]) rto.sample((now - sentAt[s]) / 1e6);
     }
 }
