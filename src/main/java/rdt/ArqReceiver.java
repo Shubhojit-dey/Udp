@@ -31,7 +31,7 @@ public final class ArqReceiver {
     }
 
     public void run(int startTimeoutMs) throws Exception {
-        // ---- wait for SYN ----
+        
         long fileSize = 0;
         int segSize = 0, window = 1, total = 0;
         Protocol proto = null;
@@ -112,6 +112,7 @@ public final class ArqReceiver {
     }
 
     
+
     private static final Packet NOISE = new Packet((byte) 0, 0, 0, 0, null);
 
     private SocketAddress lastPeer;

@@ -8,7 +8,7 @@
 **Go-Back-N (`GoBackNSender`, in-order branch of `ArqReceiver`)**
 - Why one timer? What happens to the timer when the base advances?
 - Why does one lost segment cost up to a whole window of retransmissions, and why does reordering hurt GBN even with zero loss?
-- Why does the receiver re-send the cumulative ACK for out-of-order segments?
+- Why does the receiver re-send the cumulative ACK for out-of-order segments??
 
 **Selective Repeat (`SelectiveRepeatSender`, SACK/buffer branch of `ArqReceiver`)**
 - Why must the window be <= 64 here? (SACK bitmap width; bit i ↔ segment ack+1+i.)

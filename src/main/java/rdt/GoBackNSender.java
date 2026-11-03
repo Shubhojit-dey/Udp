@@ -3,10 +3,7 @@ package rdt;
 import java.net.DatagramSocket;
 import java.net.SocketAddress;
 
-/**
- * Sliding window with cumulative ACKs and ONE timer for the oldest unacknowledged segment.
- * On timeout the whole outstanding window [base, next) is retransmitted.
- */
+
 public final class GoBackNSender extends ArqSender {
     public GoBackNSender(DatagramSocket s, SocketAddress peer, byte[] data, byte[] sha,
                          int segSize, int window, RtoEstimator rto) {
