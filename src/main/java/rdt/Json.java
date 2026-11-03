@@ -3,9 +3,8 @@ package rdt;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/** Tiny flat-object JSON writer (no external libraries allowed by the proposal). */
 public final class Json {
-    private final Map<String, Object> m = new LinkedHashMap<>();
+     private final Map<String, Object> m = new LinkedHashMap<>();
 
     public Json put(String k, Object v) { m.put(k, v); return this; }
 

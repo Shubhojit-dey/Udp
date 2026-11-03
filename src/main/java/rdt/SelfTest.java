@@ -5,7 +5,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Random;
+ import java.util.Random;
 
 /** In-process regression test: every protocol must deliver a byte-identical file through a hostile channel. */
 public final class SelfTest {

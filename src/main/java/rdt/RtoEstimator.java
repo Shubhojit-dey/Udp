@@ -10,7 +10,7 @@ package rdt;
  * from a retransmitted segment, and the backed-off RTO is kept until a clean sample arrives.
  * Fixed mode returns a constant RTO (used for the RTO-sensitivity experiment).
  */
-public final class RtoEstimator {
+public final class  RtoEstimator {
     private static final double ALPHA = 0.125, BETA = 0.25;
 
     private final boolean adaptive;
