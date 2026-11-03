@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reads results/results.csv, writes plots + tables to results/plots/ (pandas + matplotlib)."""
+""" Reads results/results.csv, writes plots + tables to results/plots/ (pandas + matplotlib)."""
 import sys
 from pathlib import Path
 import pandas as pd
