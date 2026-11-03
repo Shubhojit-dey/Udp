@@ -13,7 +13,7 @@
 **Selective Repeat (`SelectiveRepeatSender`, SACK/buffer branch of `ArqReceiver`)**
 - Why must the window be <= 64 here? (SACK bitmap width; bit i ↔ segment ack+1+i.)
 - What happens if a SACK is lost? (Next ACK carries the same information; cumulative ACK is the backstop.)
-- Why is the reorder buffer bounded by the window?
+- Why is the reorder buffer bounded by the window??
 
 **Adaptive RTO (`RtoEstimator`)**
 - Write the Jacobson/Karels update from memory (α=1/8, β=1/4, RTO=SRTT+4·RTTVAR).
