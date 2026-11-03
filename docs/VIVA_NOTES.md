@@ -10,13 +10,13 @@
 
 - Why one timer? What happens to the timer when the base advances?
 - Why does one lost segment cost up to a whole window of retransmissions, and why does reordering hurt GBN even with zero loss?
-- Why does the receiver re-send the cumulative ACK for out-of-order segments?
+- Why does the receiver re-send the cumulative ACK for out-of-order segments??
 
 **Selective Repeat (`SelectiveRepeatSender`, SACK/buffer branch of `ArqReceiver`)**
 
 - Why must the window be <= 64 here? (SACK bitmap width; bit i ↔ segment ack+1+i.)
 - What happens if a SACK is lost? (Next ACK carries the same information; cumulative ACK is the backstop.)
-- Why is the reorder buffer bounded by the window?
+- Why is the reorder buffer bounded by the window??
 
 **Adaptive RTO (`RtoEstimator`)**
 
@@ -31,4 +31,8 @@
   **Harness / integrity (`run_experiments.py`, `Sha256Util`, SYN hash)**
 
 - Why vary one parameter at a time? Why are seeds shared across protocols within a repeat?
+**Harness / integrity (`run_experiments.py`, `Sha256Util`, SYN hash)**
+- Why vary one parameter at a time? Why are seeds shared across protocols within a repeat??
 - What does "goodput" measure here, and when does the clock start/stop?
+
+
