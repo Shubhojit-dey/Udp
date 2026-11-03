@@ -12,32 +12,19 @@ import java.util.concurrent.Delayed;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
-/**
- * UDP fault-injecting proxy:  sender --> front[listen]  ...  back --> receiver.
- *
- * Determinism: every fault decision is a pure function of
- *     (seed, direction, packet type, seq-or-ack, occurrence number of that exact id)
- * Jitter is queueing delay on a FIFO link (never reorders by itself); reordering is an explicit,
- * separately controlled impairment, so the experiments can vary one cause at a time.
- * computed with a SplitMix64 hash, NOT of arrival order or a shared RNG stream. So "the 3rd
- * transmission of segment 812 is dropped" holds on every run with the same seed, whichever
- * protocol is sending and however the OS schedules threads. (ACK fates depend on how many ACKs
- * the receiver emits, which is protocol/timing dependent, so they match only statistically.)
- */
 public final class ChannelEmulator {
     public static final class Config {
-        public double loss, dup, reorder, corrupt;       // probabilities 0..1
-        public double delayMs = 5, jitterMs = 1;         // one-way base delay and +/- jitter
-        public double reorderGapMs = 15;                 // extra hold applied to a "reordered" packet
+        public double loss, dup, reorder, corrupt;       
+        public double delayMs = 5, jitterMs = 1;         
+        public double reorderGapMs = 15;                 
         public long seed = 1;
-        public boolean forwardOnly = false;              // impair only sender->receiver direction
+        public boolean forwardOnly = false;             
     }
 
     private final Config cfg;
     private final DatagramSocket front, back;
     private final InetSocketAddress target;
     private volatile SocketAddress senderAddr;
-    /** Packet waiting for its release time; ordered by (due, arrival sequence) so FIFO order is exact. */
     private static final class Item implements Delayed {
         final int dir; final byte[] data; final long due; final long order;
         Item(int dir, byte[] data, long due, long order) { this.dir = dir; this.data = data; this.due = due; this.order = order; }
@@ -51,9 +38,9 @@ public final class ChannelEmulator {
     private final DelayQueue<Item> queue = new DelayQueue<>();
     private final AtomicLong orderSeq = new AtomicLong();
     private Thread releaser;
-    private final AtomicLong[][] counters = new AtomicLong[2][5]; // seen, dropped, duplicated, corrupted, reordered
+    private final AtomicLong[][] counters = new AtomicLong[2][5]; 
     private final HashMap<Long, Integer>[] occurrence;
-    private final long[] lastDue = new long[2]; // each element touched by one pump thread only
+    private final long[] lastDue = new long[2]; 
     private volatile long lastActivity = System.nanoTime();
 
     @SuppressWarnings({"unchecked", "rawtypes"})
@@ -89,9 +76,9 @@ public final class ChannelEmulator {
                 try {
                     if (it.dir == 0) back.send(new DatagramPacket(it.data, it.data.length, target));
                     else if (senderAddr != null) front.send(new DatagramPacket(it.data, it.data.length, senderAddr));
-                } catch (Exception ignored) { /* socket closed during shutdown */ }
+                } catch (Exception ignored) {  }
             }
-        } catch (InterruptedException ignored) { /* stop() */ }
+        } catch (InterruptedException ignored) {  }
     }
 
     public void stop() {
