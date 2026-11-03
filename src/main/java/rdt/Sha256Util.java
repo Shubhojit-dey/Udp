@@ -7,6 +7,7 @@ import java.security.MessageDigest;
 
 public final class Sha256Util {
     private Sha256Util() {}
+    
 
     public static byte[] digest(Path file) throws Exception {
         MessageDigest md = MessageDigest.getInstance("SHA-256");

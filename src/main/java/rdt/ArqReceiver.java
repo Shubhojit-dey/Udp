@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.TreeMap;
 
+
 public final class ArqReceiver {
     private final DatagramSocket sock;
     private final Path out;
@@ -110,6 +111,7 @@ public final class ArqReceiver {
         return bits;
     }
 
+    
 
     private static final Packet NOISE = new Packet((byte) 0, 0, 0, 0, null);
 
