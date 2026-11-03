@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
-/** Command line entry point: send | receive | emulate | hash | genfile */
+
 public final class Main {
     public static void main(String[] args) throws Exception {
         if (args.length == 0) { usage(); return; }
